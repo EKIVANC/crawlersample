@@ -48,6 +48,7 @@ I think, We can easily do it by getting the content of each javascript library a
 However it will dramatically increase the running time of the program because of additional HTTP Requests.
 
 **If I spend more time:**
+
 -> I can focus the defects reported in SpotBugs
 
 -> I can implement the last bonus questions, by getting the content of JS files and comparing them.
