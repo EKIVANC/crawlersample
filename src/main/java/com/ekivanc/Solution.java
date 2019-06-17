@@ -19,6 +19,9 @@ import java.util.concurrent.Future;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import com.ekivanc.util.Constants;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 
 /**
  * 
@@ -26,6 +29,8 @@ import com.ekivanc.util.Constants;
  * Assessment solution for scalable capital
  */
 public class Solution {
+
+	private static final Logger logger = LogManager.getLogger(Solution.class);
 
 	// Actually there is a google search rest API provided by Google,
 	// but because the assessment is based on developing a crawler, I choose this
@@ -82,22 +87,17 @@ public class Solution {
 			} catch (InterruptedException e) {
 
 				/**
-				 * I never log to console because you can not turn it off/on and 
-				 * no ability to set output levels (Like info/debug/error) you can use a properly
-				 * configured logger library like (Log4J) or tools like 'KIBANA' would be useful
-				 * but because this is only short-time practice, I thought it is OK
+				 * A better logger config should be done..
 				 */
+				logger.error(e.getMessage());
 				// TODO Auto-generated catch block
-				// I did not log on console, Log4J configuration can be made to collect the errors StackTrace in a file
-				 // e.printStackTrace();
-				// throw new IllegalStateException(e);
-				// System.out.println("'an error occured in execution..");
 			} catch (ExecutionException e) {
 				// I did not log on console, Log4J configuration can be made to collect the errors StackTrace in a file
 				// TODO Auto-generated catch block
-				 // e.printStackTrace();
-				// System.out.println("'an error occured in execution..");
-				// throw new IllegalStateException(e);
+				/**
+				 * A better logger config should be done..
+				 */
+				logger.error(e.getMessage());
 			}
 			return new ArrayList<String>();
 		}).flatMap(List::stream).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
