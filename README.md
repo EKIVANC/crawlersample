@@ -27,7 +27,7 @@ PMD & Spotbugs plugins also integrated, please run the following command:
 **About the application:**
 A concurrent application is developed by using Callable interfaces and java concurrent Executors api.
 
-No dependency or 3rd party library used in application development. (Only JUnit for testing)
+No dependency or 3rd party library used in application development. (Only JUnit for testing and Log4j for logging)
 
 The abstract factory pattern was used for populating Parser libraries.
 In summary we have Parser4Google and Parser4JScript classes both implements the HtmlParser interface.
@@ -46,6 +46,11 @@ About the last bonus question which is:
 
 I think, We can easily do it by getting the content of each javascript library and comparing the content.
 However it will dramatically increase the running time of the program because of additional HTTP Requests.
+
+**If I spend more time:**
+-> I can focus the defects reported in SpotBugs
+-> I can implement the last bonus questions, by getting the content of JS files and comparing them.
+-> Get rid of code repeating of Abstraction in HTMLParser implementation by applying template pattern.
 
 
   

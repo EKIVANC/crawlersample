@@ -31,8 +31,5 @@ public final class LibraryCrawler implements Callable<List<String>>  {
     	String pageSource = PageSourceProvider.populate().getPageSource(webPageUrl);
 		return scriptParser.parse(pageSource);
 	}
-	
-	public String getWebPageName() {
-		return this.webPageUrl;
-	}
+
 }

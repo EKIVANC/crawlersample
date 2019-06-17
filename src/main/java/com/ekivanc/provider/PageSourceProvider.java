@@ -14,7 +14,7 @@ public final class PageSourceProvider {
 
     private PageSourceProvider() {}
 
-    private final static String USER_AGENT_KEY = "User-Agent";
+    private final static String USER_AGENT_NAME = "User-Agent";
     private final static String CHAR_SET = "UTF-8";
     /**
      * Provides the source code of given page as String
@@ -25,7 +25,7 @@ public final class PageSourceProvider {
     public String getPageSource(String url) throws IOException {
 
         URLConnection connection = new URL(url).openConnection();
-        connection.setRequestProperty(USER_AGENT_KEY, Constants.USER_AGENT_KEY.getValue());
+        connection.setRequestProperty(USER_AGENT_NAME, Constants.USER_AGENT_KEY.getValue());
         connection.setConnectTimeout(Integer.parseInt(Constants.TIMEOUT_VALUE.getValue()));
         connection.setReadTimeout(Integer.parseInt(Constants.TIMEOUT_VALUE.getValue()));
         connection.connect();
