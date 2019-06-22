@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
  */
 public class Parser4Google implements HtmlParser {
 
-    private final String patternPageResultUrlStart ="<div class=\"rc\"><div class=\"r\"><a href=\"";
-    private final String patternPageResultUrlEnd ="\"";
+    private static final  String patternPageResultUrlStart ="<div class=\"rc\"><div class=\"r\"><a href=\"";
+    private static final String patternPageResultUrlEnd ="\"";
 
   @Override
   public List<String> parse(String htmlDocument) {

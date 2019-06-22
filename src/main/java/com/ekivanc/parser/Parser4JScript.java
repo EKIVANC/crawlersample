@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 public class Parser4JScript implements HtmlParser {
 
-  final String patternPageResultUrlStart ="/";
-  final String patternPageResultUrlEnd =".\\.js";
+  private static final  String patternPageResultUrlStart ="/";
+  private static final  String patternPageResultUrlEnd =".\\.js";
 
   @Override
   public List<String> parse(String htmlDocument) {
@@ -21,7 +21,7 @@ public class Parser4JScript implements HtmlParser {
 
     while(matcher.find()) {
       String tmp = matcher.group(0).trim();
-      int lastIndexedSlash = tmp.lastIndexOf("/");
+      int lastIndexedSlash = tmp.lastIndexOf('/');
       retVal.add(tmp.substring(lastIndexedSlash+1));
     }
 

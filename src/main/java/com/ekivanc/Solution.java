@@ -68,7 +68,7 @@ public class Solution {
 		/**
 		 * For each page create a new LibraryCrawler which is Callable
 		 */
-		List<LibraryCrawler> scriptCrawlers = new ArrayList<LibraryCrawler>();
+		List<LibraryCrawler> scriptCrawlers = new ArrayList<>();
 		googleResultpages.forEach(pageUrl -> scriptCrawlers.add(new LibraryCrawler(pageUrl)));
 
 		// No need to define number of threads thanks to newWorkStealingPool
@@ -84,20 +84,20 @@ public class Solution {
 		Map<String, Long> crawlingResults = executor.invokeAll(scriptCrawlers).parallelStream().map(future -> {
 			try {
 				return future.get();
-			} catch (InterruptedException e) {
+			} catch (InterruptedException | ExecutionException e) {
 
 				/**
 				 * A better logger config should be done..
 				 */
 				logger.error(e.getMessage());
+
+
+				// The throwing of the InterruptedException CLEARS the interrupted state of the Thread
+				// Restore interrupted state for higher level classes & handlers..
+				Thread.currentThread().interrupt();
+
+
 				// TODO Auto-generated catch block
-			} catch (ExecutionException e) {
-				// I did not log on console, Log4J configuration can be made to collect the errors StackTrace in a file
-				// TODO Auto-generated catch block
-				/**
-				 * A better logger config should be done..
-				 */
-				logger.error(e.getMessage());
 			}
 			return new ArrayList<String>();
 		}).flatMap(List::stream).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -120,13 +120,12 @@ public class Solution {
 	}
 
 	private static Map<String, Long> sortPageResultOutput(Map<String, Long> crawlingResults) {
-		Map<String, Long> sortedCrawlingResults = crawlingResults.entrySet().parallelStream()
+		return crawlingResults.entrySet().parallelStream()
 				.sorted((p1, p2) -> p1.getValue().compareTo(p2.getValue()) * -1).collect(Collectors.toMap(
 						Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-		return sortedCrawlingResults;
 	}
 
-	public static String getGooglePageSourceCode(final String searchUrl) throws InterruptedException, ExecutionException {
+	static String getGooglePageSourceCode(final String searchUrl) throws InterruptedException, ExecutionException {
 		// The Purpose of this CALLABLE is:
 		// Printing a loader effect with dots(...) to the screen
 		// until one single HTTP Get request finalized.
@@ -151,14 +150,13 @@ public class Solution {
 		System.out.println(".");
 		System.out.println("Google Search Succeeded!");
 		 // Get a Google result page for the search term
-		String googlePageSourceCode = future4GoogleSearch.get();
-		return googlePageSourceCode;
+		return future4GoogleSearch.get();
 	}
 
 	// prepare search URL for google
 	// I created a combination of Enum constants and Config.prop file together for this assessment 
 	// which is not best practice but handful for this assessment
-	public static String getGoogleSearchURL(final String searchWord) {
+	static String getGoogleSearchURL(final String searchWord) {
 		return Constants.GOOGLE_PAGE_URL.getValue() + searchWord + "&num="
 				+ Constants.GOOGLE_SEARCH_RESULT_NUMBER.getValue();
 	}

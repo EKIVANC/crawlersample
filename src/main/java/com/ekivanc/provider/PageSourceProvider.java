@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import com.ekivanc.util.Constants;
 
@@ -14,8 +15,8 @@ public final class PageSourceProvider {
 
     private PageSourceProvider() {}
 
-    private final static String USER_AGENT_NAME = "User-Agent";
-    private final static String CHAR_SET = "UTF-8";
+    private static final String USER_AGENT_NAME = "User-Agent";
+    // private static final String CHAR_SET = "UTF-8";
     /**
      * Provides the source code of given page as String
      * @param url the HTTP URL of page
@@ -29,7 +30,7 @@ public final class PageSourceProvider {
         connection.setConnectTimeout(Integer.parseInt(Constants.TIMEOUT_VALUE.getValue()));
         connection.setReadTimeout(Integer.parseInt(Constants.TIMEOUT_VALUE.getValue()));
         connection.connect();
-        BufferedReader reader  = new BufferedReader(new InputStreamReader(connection.getInputStream(), Charset.forName(  CHAR_SET )));
+        BufferedReader reader  = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8  ));
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
