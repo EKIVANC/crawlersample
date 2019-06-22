@@ -26,8 +26,8 @@ public enum Constants {
       catch (Exception e) {
         logger.error(e.getMessage());
         // also log console..
-        System.out.println("Unable to load " + PATH + " file from classpath.");
-        System.out.println(e.getStackTrace());
+        // System.out.println("Unable to load " + PATH + " file from classpath.");
+//        System.out.println(e.getStackTrace());
       }
     }
     value = (String) properties.get(this.toString());
