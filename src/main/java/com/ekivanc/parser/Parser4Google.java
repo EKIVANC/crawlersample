@@ -12,20 +12,10 @@ import java.util.regex.Pattern;
  */
 public class Parser4Google implements HtmlParser {
 
-    private static final  String patternPageResultUrlStart ="<div class=\"rc\"><div class=\"r\"><a href=\"";
-    private static final String patternPageResultUrlEnd ="\"";
-
   @Override
-  public List<String> parse(String htmlDocument) {
-    List<String> domainNames = new ArrayList<>();
-    Pattern pattern = Pattern.compile(patternPageResultUrlStart+ "(.*?)" +patternPageResultUrlEnd);
-    Matcher matcher = pattern.matcher(htmlDocument);
-    while(matcher.find()) {
-      String tmp = matcher.group(0).trim();
-      int startIndex = tmp.indexOf("<a href=\"");
-      String domainName = tmp.substring(startIndex+9);
-      domainNames.add(domainName.substring(0,domainName.length()-1));
-    }
-    return domainNames;
+  public String parseMatchedString(String tmp) {
+    int startIndex = tmp.indexOf("<a href=\"");
+    String domainName = tmp.substring(startIndex+9);
+    return domainName.substring(0,domainName.length()-1);
   }
 }

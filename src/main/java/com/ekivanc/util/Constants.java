@@ -10,7 +10,12 @@ public enum Constants {
   GOOGLE_PAGE_URL,
   GOOGLE_SEARCH_RESULT_NUMBER,
   USER_AGENT_KEY,
-  TIMEOUT_VALUE;
+  TIMEOUT_VALUE,
+  PATTERN_GOOGLE_PAGE_RESULT_URL_START,
+  PATTERN_GOOGLE_PAGE_RESULT_URL_END,
+  PATTERN_JS_PAGE_RESULT_URL_START,
+  PATTERN_JS_PAGE_RESULT_URL_END;
+
 
   private static final String PATH = "config.properties";
   private static Properties properties;
