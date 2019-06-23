@@ -56,5 +56,17 @@ However it will dramatically increase the running time of the program because of
 -> Get rid of code repeating of Abstraction in HTMLParser implementation by applying template pattern.
 
 
+**Sonar Result:**
+https://sonarcloud.io/dashboard?id=EKIVANC_crawlersample
+
+**To RUN sonar analysis again:**
+mvn sonar:sonar \
+  -Dsonar.projectKey=EKIVANC_crawlersample \
+  -Dsonar.organization=ekivanc-github \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=987a5b0b380c8ca1959c0989a3adb00bb80d5aaa
+  
+  
+
 
   
