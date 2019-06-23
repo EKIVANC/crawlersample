@@ -56,7 +56,7 @@ public class Solution {
 		/**
 		 * TASK-2: Extract main result links from the page
 		 */
-		List<String> googleResultpages = googleParser.parse(googlePageSourceCode);
+		List<String> googleResultpages = googleParser.parse(googlePageSourceCode, Constants.PATTERN_GOOGLE_PAGE_RESULT_URL_START.getValue(), Constants.PATTERN_GOOGLE_PAGE_RESULT_URL_END.getValue());
 
 		/**
 		 * Extracted Pages are here!

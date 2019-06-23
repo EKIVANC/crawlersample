@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import com.ekivanc.parser.*;
+import com.ekivanc.util.Constants;
 import com.ekivanc.util.ResourceFile;
 import org.junit.Before;
 import org.junit.Rule;
@@ -59,7 +60,7 @@ public class SolutionTest
         final String sampleURL=  "https://onedio.com/testler";
         String googleSampleResultPage = googleSearchResourceFile.getContent();
         Parser4Google scriptParser = (Parser4Google) parserFactory.create(ParserType.GOOGLE);
-        List<String> parsedResult = scriptParser.parse(googleSampleResultPage);
+        List<String> parsedResult = scriptParser.parse(googleSampleResultPage, Constants.PATTERN_GOOGLE_PAGE_RESULT_URL_START.getValue(),  Constants.PATTERN_GOOGLE_PAGE_RESULT_URL_END.getValue());
         assertTrue(parsedResult.size()>0);
         assertTrue(parsedResult.get(0).equals(sampleURL));
     }
@@ -72,7 +73,7 @@ public class SolutionTest
 
         String scriptSamplePage = scriptLibResourceFile.getContent();
         Parser4JScript scriptParser = (Parser4JScript) parserFactory.create(ParserType.SCRIPT);
-        List<String> parsedResult = scriptParser.parse(scriptSamplePage);
+        List<String> parsedResult = scriptParser.parse(scriptSamplePage, Constants.PATTERN_JS_PAGE_RESULT_URL_START.getValue(), Constants.PATTERN_JS_PAGE_RESULT_URL_END.getValue());
         assertTrue(parsedResult.size() == jscriptLibraryNum );
         assertTrue(parsedResult.get(0).equals(sampleScriptLib));
     }
