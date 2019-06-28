@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 /**
  * 
  * @author ekivanc
-Aa */
+ */
 public class Solution {
 
 	private static final Logger logger = LogManager.getLogger(Solution.class);
