@@ -26,8 +26,7 @@ import org.apache.log4j.Logger;
 /**
  * 
  * @author ekivanc
- * Assessment solution for scalable capital
- */
+Aa */
 public class Solution {
 
 	private static final Logger logger = LogManager.getLogger(Solution.class);
@@ -115,7 +114,7 @@ public class Solution {
 		System.out.println("Here is top 5 most used libraries:");
 		// Actually I can Limit the result while sorting in two lines above
 		// but I just want it to be more readable..
-		sortedCrawlingResults.entrySet().stream().limit(5)
+		sortedCrawlingResults.entrySet().stream()
 				.forEach(m -> System.out.println(m.getKey() + "->" + m.getValue()+" times used."));
 	}
 
