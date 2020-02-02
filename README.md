@@ -49,7 +49,7 @@ However it will dramatically increase the running time of the program because of
 
 **If I spend more time:**
 
--> I can focus the defects reported in SpotBugs
+-> I can focus the issues reported in SpotBugs
 
 -> I can implement the last bonus questions, by getting the content of JS files and comparing them.
 
